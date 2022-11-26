@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+const pageTitle = "Snoodev | Portfolio";
+const allProjects = await Astro.glob("./portfolio/*.md");
+
+const projects = {
+  name: "",
+  description: "",
+  url: "",
+  image: "",
+};
+---
+
+<Layout title={pageTitle}>
+  <header>
+    <h1>{pageTitle}</h1>
+    <h2>Your next design, development & QA agency</h2>
+  </header>
+
+  <main>
+    <h3>Here are a few projects we've done so far:</h3>
+
+    {
+      allProjects.map((project) => (
+        <div>
+          <a style="display: block;" href={project.frontmatter.url}>
+            <figure style="display: inline-block;">
+              <img
+                src={project.frontmatter.image.url}
+                alt={project.frontmatter.image.alt}
+              />
+              <figcaption>
+                <>
+                  <h4>{project.frontmatter.name}</h4>
+                  <ul>
+                    <li>{project.frontmatter.description}</li>
+                    <li>
+                      🔗{" "}
+                      <a href={project.frontmatter.url} target="_blank">
+                        Check out their website here
+                      </a>
+                    </li>
+                  </ul>
+                </>
+              </figcaption>
+            </figure>
+          </a>
+        </div>
+      ))
+    }
+  </main>
+</Layout>
+
+<style>
+  ul {
+    padding: 0px;
+    margin: 0px;
+  }
+  ul li {
+    padding: 0px;
+    padding-bottom: 1rem;
+    list-style: none;
+  }
+  img {
+    width: 50vw;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  figure {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--color-bg-secondary);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    border-radius: 20px;
+    margin-bottom: 2em;
+    padding: 2em;
+    transition: transform 0.1s ease-in-out 0.1s;
+    cursor: pointer;
+  }
+
+  figure a:hover {
+    box-shadow: none;
+    color: var(--color-link);
+  }
+
+  figure:hover {
+    transform: scale(1.03);
+  }
+
+  figure figcaption {
+    color: #000;
+  }
+
+  figure figcaption h4 {
+    font-size: 2em;
+    margin: 0px;
+  }
+
+  @media only screen and (max-width: 900px) {
+    a figure {
+      width: 75vw;
+      align-items: center;
+    }
+  }
+</style>

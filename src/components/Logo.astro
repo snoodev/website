@@ -1,0 +1,41 @@
+<div class="homepage-logo">
+  <a href="/">
+    <h1>Snoodev</h1>
+    <img class="home-img" src="logo.svg" alt="logo" />
+  </a>
+</div>
+
+<style>
+  .homepage-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .home-img {
+    margin: 1em;
+    width: 5vw;
+  }
+
+  a {
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  a:active {
+    box-shadow: none;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-text);
+    box-shadow: none;
+  }
+
+  @media only screen and (max-width: 900px) {
+    a .home-img {
+      width: 15vw;
+    }
+  }
+</style>
