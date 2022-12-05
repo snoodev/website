@@ -48,9 +48,9 @@ const { title } = Astro.props;
     --color-text-secondary: #191716;
     --font-family: "Roboto", sans-serif;
     --hover-brightness: 1.2;
-    --justify-important: center;
+    --justify-important: flex-start;
     --justify-normal: left;
-    --line-height: 1.5;
+    --line-height: 2;
     --width-card: 285px;
     --width-card-medium: 460px;
     --width-card-wide: 800px;
@@ -101,7 +101,7 @@ const { title } = Astro.props;
   footer,
   header,
   main {
-    margin: 0 auto;
+    margin: 5em auto;
     max-width: var(--width-content);
     padding: 1rem 1rem;
   }
@@ -118,6 +118,7 @@ const { title } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     justify-content: var(--justify-important);
+    margin-bottom: 2em;
   }
 
   section img,
@@ -196,22 +197,27 @@ const { title } = Astro.props;
 
   h1 {
     font-size: 3.5em;
+    margin: 0;
+    margin-bottom: 2em;
   }
 
   h2 {
-    font-size: 2.7em;
+    font-size: 3em;
+    margin: 0;
+    margin-bottom: 1em;
   }
 
   h3 {
-    font-size: 2em;
+    font-size: 2.5em;
+    margin: 0;
   }
 
   h4 {
-    font-size: 1em;
+    font-size: 2em;
   }
 
   h5 {
-    font-size: 0.7em;
+    font-size: 1.5em;
   }
 
   h1,
@@ -288,6 +294,7 @@ const { title } = Astro.props;
     border-radius: 2px;
     color: var(--color-bg);
     text-decoration: none;
+    transform: scale(1.05);
   }
 
   a b,
@@ -308,10 +315,6 @@ const { title } = Astro.props;
     cursor: pointer;
     border: 1px solid #000000;
     box-sizing: border-box;
-  }
-
-  .button-wide {
-    width: 100%;
   }
 
   button,
@@ -527,11 +530,23 @@ const { title } = Astro.props;
     padding: 1.5rem 0;
   }
 
-  @media only screen and (max-width: 900px) {
-    button {
-      font-size: small;
-      font-weight: bold;
+  @media only screen and (max-width: 768px) {
+    body {
+      width: var(--width-content);
+      max-width: 768px;
+
+      color: var(--color-text);
+      font-family: var(--font-family);
       line-height: var(--line-height);
+      margin: 1em 1em 1em 1em;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    button {
+      font-size: 2em;
+      font-weight: bold;
+      line-height: 1;
       margin: 0.5rem 0;
       padding: 0.3rem 1rem;
       font-weight: 500;
@@ -541,12 +556,20 @@ const { title } = Astro.props;
       box-sizing: border-box;
     }
 
-    nav ul li {
-      display: inline-block;
-      margin: 0 0.5rem;
-      position: relative;
-      text-align: left;
-      padding: 0.2em;
+    h1 {
+      font-size: 4em;
+    }
+
+    h2 {
+      font-size: 2.4em;
+    }
+
+    h3 {
+      font-size: 2.2em;
+    }
+
+    p {
+      font-size: 2em;
     }
   }
 </style>

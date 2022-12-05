@@ -2,9 +2,8 @@
 let year = new Date().getFullYear();
 ---
 
-<footer>
+<footer class="desktop-footer">
   <hr />
-
   <div class="footer-wrapper">
     <div class="footer-links">
       <ul>
@@ -16,7 +15,57 @@ let year = new Date().getFullYear();
 
     <div class="footer-logo">
       <img class="footer-img" src="footer-logo.svg" alt="logo" />
-      <h3>Snoodev</h3>
+      <h4>Snoodev</h4>
+    </div>
+
+    <div class="footer-links-right">
+      <ul>
+        <li><a href="/">Pricing</a></li>
+        <li><a href="/about">Privacy policy</a></li>
+        <li><a href="/portfolio">Something</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lower-footer-wrapper">
+    <div class="social-links">
+      <a href="https://www.instagram.com/snoodev/" target="_blank">
+        <img src="instagram.svg" alt="instagram-link" />
+      </a>
+
+      <a href="https://snoodev.t.me" target="_blank">
+        <img src="telegram.svg" alt="telegram-link" />
+      </a>
+
+      <a href="mailto:hello@snoodev.com" target="_blank">
+        <img src="email.svg" alt="send-email" />
+      </a>
+
+      <a href="https://facebook.com/snoodev" target="_blank">
+        <img src="facebook.svg" alt="facebook-link" />
+      </a>
+    </div>
+
+    <div class="copyright">
+      <p>© snoodev {year}</p>
+    </div>
+  </div>
+</footer>
+
+<footer class="mobile-footer">
+  <hr />
+  <div class="footer-wrapper">
+    <div class="footer-links">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-logo">
+      <img class="footer-img" src="footer-logo.svg" alt="logo" />
+      <h4>Snoodev</h4>
     </div>
 
     <div class="footer-links-right">
@@ -54,6 +103,9 @@ let year = new Date().getFullYear();
 </footer>
 
 <style>
+  .mobile-footer {
+    display: none;
+  }
   .footer-wrapper {
     display: flex;
     flex-direction: row;
@@ -84,7 +136,7 @@ let year = new Date().getFullYear();
     gap: 1rem;
   }
 
-  .footer-logo h3 {
+  .footer-logo h4 {
     margin: 0px;
     padding: 0px;
   }
@@ -93,7 +145,7 @@ let year = new Date().getFullYear();
     width: 7vw;
   }
   .footer-img {
-    width: 2vw;
+    width: 3em;
   }
 
   footer a {
@@ -125,6 +177,90 @@ let year = new Date().getFullYear();
     width: 20px;
   }
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 768px) {
+    .desktop-footer {
+      display: none;
+    }
+
+    .mobile-footer {
+      display: unset;
+    }
+
+    a {
+      font-size: 2em;
+    }
+
+    .footer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2em;
+    }
+
+    .footer-links-right {
+      text-align: start;
+    }
+
+    .footer-links ul,
+    .footer-links-right ul {
+      padding: 1em;
+    }
+    .footer-links ul li,
+    .footer-links-right ul li {
+      padding: 0px;
+      padding-bottom: 1rem;
+      list-style: none;
+    }
+
+    .footer-logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2rem;
+      margin: 1em;
+    }
+
+    .footer-logo h4 {
+      margin: 1em;
+    }
+    .home-img {
+      margin: 1em;
+      width: 7vw;
+    }
+    .footer-img {
+      width: 3.5em;
+    }
+
+    footer a {
+      box-shadow: none;
+    }
+    footer a:active {
+      box-shadow: none;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--color-text);
+      box-shadow: none;
+    }
+
+    .lower-footer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2em;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: row;
+      gap: 5rem;
+    }
+
+    .social-links img {
+      width: 1.5em;
+    }
   }
 </style>
