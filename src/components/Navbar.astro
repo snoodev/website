@@ -1,4 +1,4 @@
-<nav>
+<nav class="desktop">
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/about">About</a></li>
@@ -10,9 +10,12 @@
   </ul>
 </nav>
 
+<nav class="mobile">
+  <button>Let's talk</button>
+</nav>
+
 <style>
-  /* Nav */
-  nav {
+  .desktop {
     width: 100%;
     align-items: center;
     display: flex;
@@ -20,6 +23,11 @@
     justify-content: space-around;
     margin-bottom: 0px;
     flex-wrap: nowrap;
+  }
+
+  .mobile {
+    display: none;
+    visibility: hidden;
   }
 
   nav ul {
@@ -32,12 +40,16 @@
     margin: 0 0.5rem;
     position: relative;
     text-align: left;
-    padding: 1em;
-    /* padding-right: 7vw; */
+    padding-left: 3em;
+    padding-right: 3em;
   }
 
   /* Nav Dropdown */
   nav ul li:hover ul {
+    display: block;
+  }
+
+  nav ul li:active ul {
     display: block;
   }
 
@@ -58,7 +70,6 @@
   }
 
   nav ul li ul::before {
-    /* fill gap above to make mousing over them easier */
     content: "";
     position: absolute;
     left: 0;
@@ -70,5 +81,32 @@
   nav ul li ul li,
   nav ul li ul li a {
     display: block;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .desktop {
+      display: none;
+      visibility: hidden;
+    }
+    .mobile {
+      visibility: unset;
+      display: flex;
+      justify-content: flex-end;
+      margin: 1em;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 0.5rem;
+      position: relative;
+      text-align: left;
+      padding-left: 3em;
+      padding-right: 3em;
+    }
   }
 </style>

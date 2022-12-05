@@ -1,0 +1,44 @@
+---
+---
+
+<div class="wide-button-mobile">
+  <button class="wide-button" onclick="openForm()">Let's talk</button>
+</div>
+
+<style>
+  .wide-button {
+    width: 100%;
+    margin: 0;
+    font-size: larger;
+    font-weight: 600;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .wide-button-mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1em;
+    }
+
+    .wide-button {
+      height: 3em;
+      font-size: 2em;
+      width: 100%;
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("hello");
+
+  function openForm() {
+    form.style.display = "block";
+  }
+
+  function closeForm() {
+    form.style.display = "none";
+  }
+</script>

@@ -2,36 +2,55 @@
 import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
 import Form from "../components/Form.astro";
+import WideButton from "../components/WideButton.astro";
 ---
 
-<Layout title="Snoodev | Your next design, development & QA agency">
+<Layout title="Snoodev | Fast solutions for your small business">
   <header>
     <Logo />
-    <h2>Your next design, development & QA agency</h2>
+    <div class="hero">
+      <h2>Fast solutions for your small business</h2>
+    </div>
   </header>
 
   <main>
-    <Form />
-    <h2>Design</h2>
-    <p>
-      We design. Check out our portfolio at the <a href="/portfolio"
-        >link here</a
-      >.
-    </p>
+    <section>
+      <h3>Design</h3>
+      <p>
+        We design. Check out our portfolio at the <a href="/portfolio"
+          >link here</a
+        >.<br /><br />Desings are hard and we know getting your name out there
+        is a challenge. We design your MVP within your budget, while still
+        delivering a unique style, suited for your brand.
+      </p>
+    </section>
 
-    <h2>Development</h2>
-    <p>
-      We develop. Some of our biggest clients are <a
-        href="https://jacksflightclub.com">Jack's Flight Club</a
-      >, <a href="https://exitfest.org">Exit Festival</a>, as well as
-      <a href="https://viita-watches.com/">Viita Watches</a>.
-    </p>
-    <h2>Quality Assurance</h2>
-    <p>
-      We also offer QA services for your website or app. We make the effort of
-      delivering bug-free experience to your users painless.
-    </p>
+    <section>
+      <h3>Development</h3>
+      <p>
+        We develop. Getting your MVP functional is a skill. We aim to minimize
+        your costs by offering development services suited to your business'
+        budget. You don't need a forturne to get the ball rolling with your MVP!
+      </p>
+    </section>
 
-    <button>Let's talk</button>
+    <section>
+      <h3>Consultancy</h3>
+      <p>
+        We also offer consultancy services for your small business
+        free-of-charge. Yep, <strong><i>completely free</i></strong>!
+      </p>
+    </section>
   </main>
+  <WideButton />
 </Layout>
+
+<style>
+  header {
+    text-align: center;
+  }
+  .hero h2 {
+    padding: 0;
+    margin: 0;
+  }
+</style>
