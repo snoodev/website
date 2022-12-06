@@ -2,7 +2,7 @@
 ---
 
 <div class="wide-button-mobile">
-  <button class="wide-button" onclick="openForm()">Let's talk</button>
+  <button id="letstalk" class="wide-button">Let's talk</button>
 </div>
 
 <style>
@@ -32,13 +32,10 @@
 </style>
 
 <script>
+  const button = document.getElementById("letstalk");
   const form = document.getElementById("hello");
 
-  function openForm() {
+  button.addEventListener("click", function openForm() {
     form.style.display = "block";
-  }
-
-  function closeForm() {
-    form.style.display = "none";
-  }
+  });
 </script>

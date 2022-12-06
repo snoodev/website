@@ -5,13 +5,13 @@
     <li><a href="/portfolio">Portfolio</a></li>
     <li><a href="/pricing">Pricing</a></li>
     <li>
-      <button>Let's talk</button>
+      <button id="letstalkNavbar">Let's talk</button>
     </li>
   </ul>
 </nav>
 
 <nav class="mobile">
-  <button>Let's talk</button>
+  <button id="letstalkNavbarMobile">Let's talk</button>
 </nav>
 
 <style>
@@ -110,3 +110,17 @@
     }
   }
 </style>
+
+<script>
+  const navbarButton = document.getElementById("letstalkNavbar");
+  const navbarButtonMobile = document.getElementById("letstalkNavbarMobile");
+  const form = document.getElementById("hello");
+
+  navbarButton.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
+
+  navbarButtonMobile.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
+</script>

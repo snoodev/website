@@ -1,0 +1,42 @@
+<div class="toast-notification" id="toast">
+  <div class="toast-content">Thanks! Snoodev will get back to you shortly.</div>
+</div>
+
+<style>
+  .toast-notification {
+    visibility: hidden;
+    width: 30em;
+    height: 12em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    background-color: var(--color-bg);
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--color-text);
+  }
+
+  .toast-content {
+    font-size: large;
+    font-weight: bold;
+    padding: 5%;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .toast-notification {
+    width: 20em;
+    height: 25em;
+    left: 30%;
+    bottom: 30px;
+  }
+
+  .toast-content {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 5%;
+  }
+  }
+</style>

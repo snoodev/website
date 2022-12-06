@@ -1,17 +1,27 @@
 ---
+import Toast from "./Toast.astro";
 ---
 
 <div class="form-popup" id="hello">
   <form name="hello" class="form-container">
-    <label for="exampleFormControlInput1"> Enter Your Name</label>
+    <label for="name">Name</label>
 
     <input type="text" id="name" placeholder="Enter your name" />
 
-    <label for="exampleFormControlInput1"> Email address</label>
+    <label for="email">Email address</label>
 
     <input type="email" id="email" placeholder="name@example.com" />
 
-    <button type="button" id="submit" onclick="closeForm()">Submit</button>
+    <label for="budget">What's your budget?</label>
+
+    <input type="text" id="budget" placeholder="€500" />
+
+    <label for="Message">Brief description of your project</label>
+
+    <textarea id="message" placeholder="I'd like to build..." rows="10"
+    ></textarea>
+
+    <button type="button" id="submit">Submit</button>
   </form>
 </div>
 
@@ -21,19 +31,126 @@
   }
 
   .form-popup {
+    width: fit-content;
+    height: fit-content;
+    max-width: 15em;
+    max-height: 35em;
     display: none;
     position: fixed;
     bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
+    right: 1em;
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--color-text);
+    padding: 2em;
     z-index: 9;
+    background-color: var(--color-bg);
   }
 
   .form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  input {
+    max-width: 15em;
+  }
+
+  #name,
+  #email,
+  #budget {
+    width: auto;
+  }
+
+  #submit {
+    height: 3em;
+    width: 100%;
+    line-height: 1;
+    margin: 0;
+    padding: 1em;
+  }
+
+  @media only screen and (max-width: 900px) {
+
+    .form-popup {
+      font-size: 2em;
+    width: fit-content;
+    height: fit-content;
+    max-width: 15em;
+    max-height: 35em;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 1em;
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--color-text);
+    padding: 2em;
+    z-index: 9;
+    background-color: var(--color-bg);
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  input {
+    max-width: 15em;
+  }
+
+  #name,
+  #email,
+  #budget {
+    width: auto;
+  }
+
+  #submit {
+    font-size: 1em;
+    height: 2em;
+    width: 100%;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+
   }
 </style>
 
-<script src="./form.js"></script>
+<script>
+  import supabase from "../config/supabaseClient";
+
+  const submit = document.getElementById("submit");
+
+  submit.addEventListener("click", async function () {
+    const form = document.getElementById("hello");
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const budget = document.getElementById("budget").value;
+    const message = document.getElementById("message").value;
+    const toast = document.getElementById("toast");
+
+    if (!name || !email || !budget || !message) {
+      alert("Please fill in all the fields correctly.");
+    } else {
+      const { data, error } = await supabase
+        .from("users")
+        .insert({ name: name, email: email, budget: budget, message: message });
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        console.log(data);
+      }
+
+      toast.style.visibility = "unset";
+
+      form.style.display = "none";
+    }
+  });
+</script>
