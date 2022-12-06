@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
 import Form from "../components/Form.astro";
 import WideButton from "../components/WideButton.astro";
+import Toast from "../components/Toast.astro";
 ---
 
 <Layout title="Snoodev | Fast solutions for your small business">
@@ -13,7 +14,10 @@ import WideButton from "../components/WideButton.astro";
     </div>
   </header>
 
-  <main>
+  <Form />
+
+  <main id="closeFormHomepage">
+    <Form />
     <section>
       <h3>Design</h3>
       <p>
@@ -43,6 +47,8 @@ import WideButton from "../components/WideButton.astro";
     </section>
   </main>
   <WideButton />
+
+  <Toast />
 </Layout>
 
 <style>
@@ -54,3 +60,12 @@ import WideButton from "../components/WideButton.astro";
     margin: 0;
   }
 </style>
+
+<script>
+  const main = document.getElementById("closeFormHomepage");
+  const form = document.getElementById("hello");
+
+  main.addEventListener("click", function closeForm() {
+    form.style.display = "none";
+  });
+</script>
