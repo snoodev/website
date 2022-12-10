@@ -6,7 +6,7 @@
       <ul>
         <li><a href="/design">Design</a></li>
         <li><a href="/development">Development</a></li>
-        <li><a href="/copyrighting">Copyrighting</a></li>
+        <li><a href="/copywriting">Copywriting</a></li>
         <li><a href="/consultancy">Consultancy</a></li>
       </ul>
     </li>
@@ -64,12 +64,17 @@
     display: none;
     height: auto;
     left: -2px;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
     position: absolute;
     top: 1.7rem;
     white-space: nowrap;
     width: auto;
     z-index: 1;
+  }
+
+  nav ul li ul li {
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--color-text);
   }
 
   nav ul li ul::before {
