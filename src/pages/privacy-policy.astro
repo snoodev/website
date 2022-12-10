@@ -3,28 +3,35 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Snoodev | Privacy Policy">
+  <main>
+    <pre>
+    Snoodev ("we," "us," or "our") is committed to protecting the privacy of our customers ("you," "your," or "yours"). This Privacy Policy explains how we collect, use, and share information about you when you visit our website or use our services.<br /><br />
 
-    <main>
+We collect your name and email address when you contact us or sign up for our services. We use this information to respond to your inquiries, provide you with updates, and improve our services.<br /><br />
 
-<pre>
-    Snoodev ("we," "us," or "our") is committed to protecting the privacy of our customers ("you," "your," or "yours"). This Privacy Policy explains how we collect, use, and share information about you when you visit our website or use our services.<br><br>
+We do not serve ads or sell your information to third parties. We may share your information with service providers who assist us with the operation of our website or the provision of our services, but only to the extent necessary to perform their services. These service providers are required to maintain the confidentiality of your information and are not permitted to use your information for any purpose other than as instructed by us.<br /><br />
 
-We collect your name and email address when you contact us or sign up for our services. We use this information to respond to your inquiries, provide you with updates, and improve our services.<br><br>
+We take reasonable measures to protect your information from unauthorized access, use, or disclosure. However, no website or internet transmission is completely secure, so we cannot guarantee the security of your information.<br /><br />
 
-We do not serve ads or sell your information to third parties. We may share your information with service providers who assist us with the operation of our website or the provision of our services, but only to the extent necessary to perform their services. These service providers are required to maintain the confidentiality of your information and are not permitted to use your information for any purpose other than as instructed by us.<br><br>
+We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.<br /><br />
 
-We take reasonable measures to protect your information from unauthorized access, use, or disclosure. However, no website or internet transmission is completely secure, so we cannot guarantee the security of your information.<br><br>
-
-We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.<br><br>
-
-If you have any questions about this Privacy Policy, please contact us at privacy@snoodev.com.
+If you have any questions about this Privacy Policy, please contact us at <a href="mailto:privacy@snoodev.com" target="_blank">privacy@snoodev.com</a>.
 
 </pre>
-
-</main>
-
+  </main>
 </Layout>
 
 <style>
-    
+  pre {
+    margin: 1rem 0;
+    max-width: var(--width-card-wide);
+    padding: 1rem 0;
+    white-space: normal;
+  }
+
+  @media only screen and (max-width: 768px) {
+    pre {
+      font-size: 2em;
+    }
+  }
 </style>

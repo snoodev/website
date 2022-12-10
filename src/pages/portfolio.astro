@@ -22,26 +22,28 @@ const projects = {
     <Form />
     <h3>Few projects we've done so far</h3>
 
-    {
-      allProjects.map((project) => (
-        <div>
-          <a href={project.frontmatter.url}>
-            <figure>
-              <img
-                src={project.frontmatter.image.url}
-                alt={project.frontmatter.image.alt}
-              />
-              <figcaption>
-                <>
-                  <h4>{project.frontmatter.name}</h4>
-                  <p>{project.frontmatter.description}</p>
-                </>
-              </figcaption>
-            </figure>
-          </a>
-        </div>
-      ))
-    }
+    <div data-aos="fade-up">
+      {
+        allProjects.map((project) => (
+          <div>
+            <a href={project.frontmatter.url}>
+              <figure>
+                <img
+                  src={project.frontmatter.image.url}
+                  alt={project.frontmatter.image.alt}
+                />
+                <figcaption>
+                  <>
+                    <h4>{project.frontmatter.name}</h4>
+                    <p>{project.frontmatter.description}</p>
+                  </>
+                </figcaption>
+              </figure>
+            </a>
+          </div>
+        ))
+      }
+    </div>
   </main>
 </Layout>
 
@@ -135,3 +137,9 @@ const projects = {
     }
   }
 </style>
+
+<script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+  AOS.init();
+</script>

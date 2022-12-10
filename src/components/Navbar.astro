@@ -1,7 +1,15 @@
 <nav class="desktop">
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/services">Services</a></li>
+    <li>
+      <a href="/services">Services</a>
+      <ul>
+        <li><a href="/design">Design</a></li>
+        <li><a href="/development">Development</a></li>
+        <li><a href="/copyrighting">Copyrighting</a></li>
+        <li><a href="/consultancy">Consultancy</a></li>
+      </ul>
+    </li>
     <li><a href="/portfolio">Portfolio</a></li>
     <li><a href="/pricing">Pricing</a></li>
     <li>
@@ -49,15 +57,10 @@
     display: block;
   }
 
-  nav ul li:active ul {
-    display: block;
-  }
-
   nav ul li ul {
     background: var(--color-bg);
     border: 1px solid var(--color-bg-secondary);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow) var(--color-shadow);
     display: none;
     height: auto;
     left: -2px;
@@ -70,6 +73,7 @@
   }
 
   nav ul li ul::before {
+    /* fill gap above to make mousing over them easier */
     content: "";
     position: absolute;
     left: 0;

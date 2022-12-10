@@ -24,6 +24,7 @@ const { title } = Astro.props;
       rel="stylesheet"
     />
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <Navbar />
@@ -242,13 +243,6 @@ const { title } = Astro.props;
     margin: 0.75rem 0;
     padding: 0;
     width: 100%;
-  }
-
-  pre {
-    margin: 1rem 0;
-    max-width: var(--width-card-wide);
-    padding: 1rem 0;
-    white-space: normal;
   }
 
   pre code,
