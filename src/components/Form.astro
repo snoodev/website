@@ -72,51 +72,48 @@ import Toast from "./Toast.astro";
   }
 
   @media only screen and (max-width: 900px) {
-
     .form-popup {
       font-size: 2em;
-    width: fit-content;
-    height: fit-content;
-    max-width: 15em;
-    max-height: 35em;
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 1em;
-    border-radius: var(--border-radius);
-    border: 2px dashed var(--color-text);
-    padding: 2em;
-    z-index: 9;
-    background-color: var(--color-bg);
-  }
+      width: fit-content;
+      height: fit-content;
+      max-width: 15em;
+      max-height: 35em;
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 1em;
+      border-radius: var(--border-radius);
+      border: 2px dashed var(--color-text);
+      padding: 2em;
+      z-index: 9;
+      background-color: var(--color-bg);
+    }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
 
-  input {
-    max-width: 15em;
-  }
+    input {
+      max-width: 15em;
+    }
 
-  #name,
-  #email,
-  #budget {
-    width: auto;
-  }
+    #name,
+    #email,
+    #budget {
+      width: auto;
+    }
 
-  #submit {
-    font-size: 1em;
-    height: 2em;
-    width: 100%;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-  }
-
-
+    #submit {
+      font-size: 1em;
+      height: 2em;
+      width: 100%;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
   }
 </style>
 

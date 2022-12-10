@@ -53,7 +53,7 @@ const { title } = Astro.props;
     --line-height: 2;
     --width-card: 285px;
     --width-card-medium: 460px;
-    --width-card-wide: 800px;
+    --width-card-wide: 100%;
     --width-content: 1080px;
   }
 
@@ -248,6 +248,7 @@ const { title } = Astro.props;
     margin: 1rem 0;
     max-width: var(--width-card-wide);
     padding: 1rem 0;
+    white-space: normal;
   }
 
   pre code,
@@ -255,7 +256,6 @@ const { title } = Astro.props;
     display: block;
     max-width: var(--width-card-wide);
     padding: 0.5rem 2rem;
-    white-space: pre-wrap;
   }
 
   small {
