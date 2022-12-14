@@ -106,6 +106,11 @@ import Toast from "./Toast.astro";
     box-shadow: 0 0 10px var(--color-secondary-accent);
   }
 
+  .inputHighlight {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent);
+  }
+
   @media only screen and (max-width: 900px) {
     .form-popup {
       font-size: 2em;
@@ -189,21 +194,28 @@ import Toast from "./Toast.astro";
       }
 
       if (email.value === "" || !isValidEmail(email.value)) {
+        alert("Please input a valid email address!");
         email.classList.add("error");
       } else {
         email.classList.remove("error");
       }
 
-      function isValidEmail(email: string) {
+      function isValidEmail(email: string | HTMLElement) {
         const emailRegex =
           /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-        return emailRegex.test(email);
+        return emailRegex.test(email.value);
       }
 
-      if (budget.value === "") {
-        budget.classList.add("error");
+      if (budget.value === "" || !isValidNumber(budget.value)) {
+        alert("Please input a valid budget for your project!");
+        email.classList.add("error");
       } else {
-        budget.classList.remove("error");
+        email.classList.remove("error");
+      }
+
+      function isValidNumber(budget: number | HTMLElement) {
+        const numberRegex = new RegExp(/\d/);
+        return numberRegex.test(budget.value);
       }
 
       if (message.value === "") {
@@ -243,6 +255,9 @@ import Toast from "./Toast.astro";
     form.style.display = "none";
   });
 
+  let name = document.getElementById("name");
+  let budget = document.getElementById("budget");
+  let message = document.getElementById("message");
   const input = document.querySelector('input[type="email"]');
 
   input.addEventListener("blur", function () {
@@ -251,6 +266,56 @@ import Toast from "./Toast.astro";
       input.classList.add("error");
     } else {
       input.classList.remove("error");
+    }
+  });
+
+  name.addEventListener("focus", function () {
+    if (this.value === "") {
+      this.classList.add("inputHighlight");
+    }
+  });
+
+  name.addEventListener("blur", function () {
+    if (this.value === "") {
+      this.classList.add("error");
+    } else {
+      this.classList.remove("inputHighlight");
+      this.classList.remove("error");
+    }
+  });
+
+  budget.addEventListener("focus", function () {
+    if (this.value === "") {
+      this.classList.add("inputHighlight");
+    }
+  });
+
+  budget.addEventListener("blur", function () {
+    if (this.value === "" || !isValidNumber(budget.value)) {
+      this.classList.add("error");
+    } else {
+      this.classList.remove("inputHighlight");
+      this.classList.remove("error");
+    }
+  });
+
+  function isValidNumber(budget: number | HTMLElement) {
+    const numberRegex = new RegExp(/\d/);
+    return numberRegex.test(budget.value);
+  }
+
+  message.addEventListener("focus", function () {
+    if (this.value === "") {
+      this.classList.add("inputHighlight");
+    }
+  });
+
+  message.addEventListener("blur", function () {
+    if (this.value === "") {
+      this.classList.add("error");
+    } else {
+      this.classList.remove("inputHighlight");
+      this.classList.remove("error");
     }
   });
 </script>
