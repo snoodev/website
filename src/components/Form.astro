@@ -173,95 +173,110 @@ import Toast from "./Toast.astro";
   const closeForm = document.getElementById("closeButton");
   const form = document.getElementById("hello");
 
-  submit.addEventListener("click", async function () {
+  async function sendForm() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let budget = document.getElementById("budget").value;
     let message = document.getElementById("message").value;
+    let toast = document.getElementById("toast");
+    const { data, error } = await supabase
+      .from("users")
+      .insert({ name: name, email: email, budget: budget, message: message });
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      console.log(data);
+    }
+
+    toast.style.visibility = "unset";
+
+    form.style.display = "none";
+
+    setTimeout(function () {
+      toast.style.display = "none";
+    }, 3000);
+  }
+
+  // form must be filled correctly before submitted
+  submit.addEventListener("click", function () {
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let budget = document.getElementById("budget");
+    let message = document.getElementById("message");
 
     if (!name || !email || !budget || !message) {
       alert("Please fill in all the fields correctly!");
+    } else sendForm();
 
-      let name = document.getElementById("name");
-      let email = document.getElementById("email");
-      let budget = document.getElementById("budget");
-      let message = document.getElementById("message");
-
-      if (name.value === "") {
-        name.classList.add("error");
-      } else {
-        name.classList.remove("error");
-      }
-
-      if (email.value === "" || !isValidEmail(email.value)) {
-        alert("Please input a valid email address!");
-        email.classList.add("error");
-      } else {
-        email.classList.remove("error");
-      }
-
-      function isValidEmail(email: string | HTMLElement) {
-        const emailRegex =
-          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-        return emailRegex.test(email.value);
-      }
-
-      if (budget.value === "" || !isValidNumber(budget.value)) {
-        alert("Please input a valid budget for your project!");
-        email.classList.add("error");
-      } else {
-        email.classList.remove("error");
-      }
-
-      function isValidNumber(budget: number | HTMLElement) {
-        const numberRegex = new RegExp(/\d/);
-        return numberRegex.test(budget.value);
-      }
-
-      if (message.value === "") {
-        message.classList.add("error");
-      } else {
-        message.classList.remove("error");
-      }
+    if (name.value === "") {
+      name.classList.add("error");
     } else {
-      let name = document.getElementById("name").value;
-      let email = document.getElementById("email").value;
-      let budget = document.getElementById("budget").value;
-      let message = document.getElementById("message").value;
-      let toast = document.getElementById("toast");
-      const { data, error } = await supabase
-        .from("users")
-        .insert({ name: name, email: email, budget: budget, message: message });
+      name.classList.remove("error");
+      sendForm();
+    }
 
-      if (error) {
-        console.log(error);
-      }
+    if (email.value === "" || !isValidEmail(email.value)) {
+      alert("Please input a valid email address!");
+      email.classList.add("error");
+    } else {
+      email.classList.remove("error");
+      sendForm();
+    }
 
-      if (data) {
-        console.log(data);
-      }
+    function isValidEmail(email: string | HTMLElement) {
+      const emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      return emailRegex.test(email.value);
+    }
 
-      toast.style.visibility = "unset";
+    if (budget.value === "" || !isValidNumber(budget.value)) {
+      alert("Please input a valid budget for your project!");
+      email.classList.add("error");
+    } else {
+      email.classList.remove("error");
+      sendForm();
+    }
 
-      form.style.display = "none";
+    function isValidNumber(budget: number | HTMLElement) {
+      const numberRegex = new RegExp(/\d/);
+      return numberRegex.test(budget.value);
+    }
 
-      setTimeout(function () {
-        toast.style.display = "none";
-      }, 3000);
+    if (message.value === "") {
+      message.classList.add("error");
+    } else {
+      message.classList.remove("error");
+      sendForm();
     }
   });
 
-  closeForm.addEventListener("click", function () {
-    form.style.display = "none";
-  });
-
+  // before submitted text validation
   let name = document.getElementById("name");
   let budget = document.getElementById("budget");
   let message = document.getElementById("message");
   const input = document.querySelector('input[type="email"]');
 
+  input.addEventListener("focus", function () {
+    if (this.value === "") {
+      this.classList.add("inputHighlight");
+    }
+  });
+
   input.addEventListener("blur", function () {
-    var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    if (this.value === "") {
+      this.classList.add("error");
+    } else {
+      this.classList.remove("inputHighlight");
+      this.classList.remove("error");
+    }
+  });
+
+  input.addEventListener("blur", function () {
+    let isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+
     if (!isValid) {
       input.classList.add("error");
     } else {
@@ -291,7 +306,7 @@ import Toast from "./Toast.astro";
   });
 
   budget.addEventListener("blur", function () {
-    if (this.value === "" || !isValidNumber(budget.value)) {
+    if (this.value === "") {
       this.classList.add("error");
     } else {
       this.classList.remove("inputHighlight");
@@ -299,10 +314,15 @@ import Toast from "./Toast.astro";
     }
   });
 
-  function isValidNumber(budget: number | HTMLElement) {
-    const numberRegex = new RegExp(/\d/);
-    return numberRegex.test(budget.value);
-  }
+  budget.addEventListener("blur", function () {
+    let isValid = /[0-9]/.test(budget.value);
+
+    if (!isValid) {
+      budget.classList.add("error");
+    } else {
+      budget.classList.remove("error");
+    }
+  });
 
   message.addEventListener("focus", function () {
     if (this.value === "") {
@@ -317,5 +337,9 @@ import Toast from "./Toast.astro";
       this.classList.remove("inputHighlight");
       this.classList.remove("error");
     }
+  });
+
+  closeForm.addEventListener("click", function () {
+    form.style.display = "none";
   });
 </script>
