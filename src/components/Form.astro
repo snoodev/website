@@ -3,6 +3,7 @@ import Toast from "./Toast.astro";
 ---
 
 <div class="form-popup" id="hello">
+  <button id="closeButton">X</button>
   <form name="hello" class="form-container">
     <label for="name">Name</label>
 
@@ -18,7 +19,7 @@ import Toast from "./Toast.astro";
 
     <label for="Message">Brief description of your project</label>
 
-    <textarea id="message" placeholder="I'd like to build..." rows="10"
+    <textarea id="message" placeholder="I'd like help with..." rows="10"
     ></textarea>
 
     <button type="button" id="submit">Submit</button>
@@ -71,6 +72,28 @@ import Toast from "./Toast.astro";
     padding: 1em;
   }
 
+  #closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg);
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    width: 5px;
+    height: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-text);
+    cursor: pointer;
+    opacity: 20%;
+    border-radius: var(--border-radius);
+  }
+
+  #closeButton:hover {
+    opacity: 100%;
+  }
+
   @media only screen and (max-width: 900px) {
     .form-popup {
       font-size: 2em;
@@ -114,6 +137,16 @@ import Toast from "./Toast.astro";
       margin: 0;
       padding: 0;
     }
+
+    #closeButton {
+      top: 15px;
+      right: 15px;
+      width: 75px;
+      height: 75px;
+      font-size: 35px;
+
+      opacity: 100%;
+    }
   }
 </style>
 
@@ -121,9 +154,10 @@ import Toast from "./Toast.astro";
   import supabase from "../config/supabaseClient";
 
   const submit = document.getElementById("submit");
+  const closeForm = document.getElementById("closeButton");
+  const form = document.getElementById("hello");
 
   submit.addEventListener("click", async function () {
-    const form = document.getElementById("hello");
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const budget = document.getElementById("budget").value;
@@ -149,5 +183,9 @@ import Toast from "./Toast.astro";
 
       form.style.display = "none";
     }
+  });
+
+  closeForm.addEventListener("click", function () {
+    form.style.display = "none";
   });
 </script>

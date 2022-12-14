@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import WideButton from "../components/WideButton.astro";
+import Form from "../components/Form.astro";
 ---
 
 <Layout title="Snoodev | Fast solutions for your small business">
@@ -9,47 +10,79 @@ import WideButton from "../components/WideButton.astro";
   </header>
 
   <main>
-    <h2 data-aos="fade-in">
-      What does your business need help with?
-    </h2>
+    <h2 data-aos="fade-in">What does your business need help with?</h2>
 
-<section data-aos="fade-in">
-    <h3>Design</h3>
-    <p>We know you've got a business to run—and we're here to help.
+    <section data-aos="fade-in">
+      <h3>Design</h3>
+      <p>
+        We know you've got a business to run—and we're here to help. If you're a
+        small business owner, you know that design can be a huge challenge. You
+        need something that represents your brand and sets you apart from the
+        crowd, but you don't have the time or money to spend on extensive
+        research or multiple rounds of revisions.
+      </p><p>
+        That's why we've designed our process around your needs. We offer fast,
+        simple services that won't break your bank account (or your back). We
+        know how important it is for you to get things done quickly, so we'll
+        work with you until we have exactly what you need. And because of our
+        budget-friendly prices, we're able to provide great looking designs at
+        an affordable price!
+      </p>
+    </section>
 
-        If you're a small business owner, you know that design can be a huge challenge. You need something that represents your brand and sets you apart from the crowd, but you don't have the time or money to spend on extensive research or multiple rounds of revisions.</p><p>That's why we've designed our process around your needs. We offer fast, simple services that won't break your bank account (or your back). We know how important it is for you to get things done quickly, so we'll work with you until we have exactly what you need. And because of our budget-friendly prices, we're able to provide great looking designs at an affordable price!</p>
-</section>
+    <section data-aos="fade-in">
+      <h3>Development</h3>
+      <p>We offer fast, quality development services for small businesses.</p>
 
-<section data-aos="fade-in">
-    <h3>Development</h3>
-    <p>We offer fast, quality development services for small businesses.</p>
+      <p>
+        Our process is streamlined so that you can get the code you need in no
+        time. And because we're used to working on a budget, we'll do everything
+        we can to keep your costs down while still delivering great quality
+        code. We'll also be communicative throughout the process—you'll know
+        exactly what's going on every step of the way!
+      </p>
+    </section>
 
-    <p>Our process is streamlined so that you can get the code you need in no time. And because we're used to working on a budget, we'll do everything we can to keep your costs down while still delivering great quality code. We'll also be communicative throughout the process—you'll know exactly what's going on every step of the way!</p>
-</section>
+    <section data-aos="fade-in">
+      <h3>Copywriting</h3>
+      <p>
+        When you're a small business owner, you can't afford to waste time or
+        money. That's why we offer copywriting services that are fast and
+        easy—and designed to get the job done right. Our process is simple: we
+        talk to you about what you need, we tell you how much it costs, and then
+        we write the copy that gets your product in front of the right people.
+      </p>
 
-<section data-aos="fade-in">
-    <h3>Copywriting</h3>
-    <p>When you're a small business owner, you can't afford to waste time or money. That's why we offer copywriting services that are fast and easy—and designed to get the job done right.
+      <p>
+        And if there's something about our process that doesn't work for you?
+        Just ask! We want to make sure we're doing everything possible to help
+        our clients succeed (and let's be honest: <i>so do you!</i>).
+      </p>
+    </section>
 
-        Our process is simple: we talk to you about what you need, we tell you how much it costs, and then we write the copy that gets your product in front of the right people.</p>
+    <section data-aos="fade-in">
+      <h3>Consultancy</h3>
+      <p>
+        Do you want to know how to make your business more successful? We're
+        here to help! At Snoodev, we believe in helping small businesses grow
+        and thrive—after all, we're a small business ourselves. We offer <strong
+          ><i>free consultancy</i>
+        </strong> services for your product. So if you have an idea for a new product,
+        or just need some advice on how to improve the one you have, we're here for
+        you.
+      </p>
 
-        <p>And if there's something about our process that doesn't work for you? Just ask! We want to make sure we're doing everything possible to help our clients succeed (and let's be honest: <i>so do you!</i>).</p>
-</section>
-
-<section data-aos="fade-in">
-    <h3>Consultancy</h3>
-    <p>Do you want to know how to make your business more successful?
-
-        We're here to help!
-        
-        At Snoodev, we believe in helping small businesses grow and thrive—after all, we're a small business ourselves. We offer <strong>free consultancy</strong> services for your product. So if you have an idea for a new product, or just need some advice on how to improve the one you have, we're here for you.</p>
-        
-    <p>And if you don't have an idea yet? That's okay! We'll give you some inspiration with our free consultancy. Our process is fast and simple, and we're always ready to help.</p>
-</section>
+      <p>
+        And if you don't have an idea yet? That's okay! We'll give you some
+        inspiration with our free consultancy. Our process is fast and simple,
+        and we're always ready to help.
+      </p>
+    </section>
   </main>
   <div data-aos="fade-in">
     <WideButton />
   </div>
+  <Form />
 </Layout>
 
 <style>
@@ -71,4 +104,16 @@ import WideButton from "../components/WideButton.astro";
   import AOS from "aos";
   import "aos/dist/aos.css";
   AOS.init();
+
+  const navbarButton = document.getElementById("letstalkNavbar");
+  const navbarButtonMobile = document.getElementById("letstalkNavbarMobile");
+  const form = document.getElementById("hello");
+
+  navbarButton.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
+
+  navbarButtonMobile.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
 </script>

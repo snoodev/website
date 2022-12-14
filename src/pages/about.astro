@@ -1,12 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import WideButton from "../components/WideButton.astro";
+import Form from "../components/Form.astro";
 ---
 
 <Layout title="Snoodev | Fast solutions for your small business">
   <header>
-
-
     <h1>Snoodev | About us</h1>
   </header>
 
@@ -14,16 +13,26 @@ import WideButton from "../components/WideButton.astro";
     <p data-aos="fade-in">
       Snoodev is an independent design and development agency focused on helping
       small businesses build their products. We believe that the whole web is an
-      open place, and as such, offer a full suite of <a href="/services">services</a>, including strategic consulting, design and development, application maintenance, copyrighting and support to meet your business needs.
+      open place, and as such, offer a full suite of <a href="/services"
+        >services</a
+      >, including strategic consulting, design and development, application
+      maintenance, copyrighting and support to meet your business needs.
     </p>
-      <p data-aos="fade-in">For years businesses have been struggling to get their product out in the open. Getting your product online is a hassle. It's slow,
-      expensive, and inflexible. Things just never seem to work out, and if they do, it takes too long and costs a lot of money. <strong>We know the frustration of dealing with designers, programmers, and
-        hosting companies</strong>. We understand this, and that's why we created Snoodev.
+    <p data-aos="fade-in">
+      For years businesses have been struggling to get their product out in the
+      open. Getting your product online is a hassle. It's slow, expensive, and
+      inflexible. Things just never seem to work out, and if they do, it takes
+      too long and costs a lot of money. <strong
+        >We know the frustration of dealing with designers, programmers, and
+        hosting companies</strong
+      >. We understand this, and that's why we created Snoodev.
     </p>
-
-    
   </main>
-  <WideButton />
+  <div data-aos="fade-in">
+    <WideButton />
+  </div>
+
+  <Form />
 </Layout>
 
 <style>
@@ -32,11 +41,22 @@ import WideButton from "../components/WideButton.astro";
     margin-bottom: 0;
     text-align: center;
   }
-
 </style>
 
 <script>
-    import AOS from "aos";
-    import "aos/dist/aos.css";
-    AOS.init();
-  </script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+  AOS.init();
+
+  const navbarButton = document.getElementById("letstalkNavbar");
+  const navbarButtonMobile = document.getElementById("letstalkNavbarMobile");
+  const form = document.getElementById("hello");
+
+  navbarButton.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
+
+  navbarButtonMobile.addEventListener("click", function openForm() {
+    form.style.display = "block";
+  });
+</script>
