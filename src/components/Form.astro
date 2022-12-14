@@ -26,6 +26,8 @@ import Toast from "./Toast.astro";
   </form>
 </div>
 
+<Toast />
+
 <style>
   #hello {
     display: none;
@@ -88,10 +90,20 @@ import Toast from "./Toast.astro";
     cursor: pointer;
     opacity: 20%;
     border-radius: var(--border-radius);
+    border: 2px dashed var(--color-text);
   }
 
   #closeButton:hover {
     opacity: 100%;
+  }
+
+  .error {
+    transition: all 0.3s;
+  }
+
+  .error.error {
+    border-color: var(--color-secondary-accent);
+    box-shadow: 0 0 10px var(--color-secondary-accent);
   }
 
   @media only screen and (max-width: 900px) {
@@ -144,7 +156,6 @@ import Toast from "./Toast.astro";
       width: 75px;
       height: 75px;
       font-size: 35px;
-
       opacity: 100%;
     }
   }
@@ -158,15 +169,54 @@ import Toast from "./Toast.astro";
   const form = document.getElementById("hello");
 
   submit.addEventListener("click", async function () {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const budget = document.getElementById("budget").value;
-    const message = document.getElementById("message").value;
-    const toast = document.getElementById("toast");
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let budget = document.getElementById("budget").value;
+    let message = document.getElementById("message").value;
 
     if (!name || !email || !budget || !message) {
-      alert("Please fill in all the fields correctly.");
+      alert("Please fill in all the fields correctly!");
+
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let budget = document.getElementById("budget");
+      let message = document.getElementById("message");
+
+      if (name.value === "") {
+        name.classList.add("error");
+      } else {
+        name.classList.remove("error");
+      }
+
+      if (email.value === "" || !isValidEmail(email.value)) {
+        email.classList.add("error");
+      } else {
+        email.classList.remove("error");
+      }
+
+      function isValidEmail(email: string) {
+        const emailRegex =
+          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        return emailRegex.test(email);
+      }
+
+      if (budget.value === "") {
+        budget.classList.add("error");
+      } else {
+        budget.classList.remove("error");
+      }
+
+      if (message.value === "") {
+        message.classList.add("error");
+      } else {
+        message.classList.remove("error");
+      }
     } else {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let budget = document.getElementById("budget").value;
+      let message = document.getElementById("message").value;
+      let toast = document.getElementById("toast");
       const { data, error } = await supabase
         .from("users")
         .insert({ name: name, email: email, budget: budget, message: message });
@@ -182,10 +232,25 @@ import Toast from "./Toast.astro";
       toast.style.visibility = "unset";
 
       form.style.display = "none";
+
+      setTimeout(function () {
+        toast.style.display = "none";
+      }, 3000);
     }
   });
 
   closeForm.addEventListener("click", function () {
     form.style.display = "none";
+  });
+
+  const input = document.querySelector('input[type="email"]');
+
+  input.addEventListener("blur", function () {
+    var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    if (!isValid) {
+      input.classList.add("error");
+    } else {
+      input.classList.remove("error");
+    }
   });
 </script>

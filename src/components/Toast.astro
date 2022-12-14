@@ -5,16 +5,16 @@
 <style>
   .toast-notification {
     visibility: hidden;
-    width: 30em;
+    width: 100%;
     height: 12em;
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 9999;
     left: 50%;
-    bottom: 30px;
-    background-color: var(--color-bg);
+    bottom: 2em;
+    transform: translateX(-50%);
+    background-color: var(--color-accent);
     border-radius: var(--border-radius);
     border: 2px dashed var(--color-text);
   }
@@ -27,10 +27,8 @@
 
   @media only screen and (max-width: 900px) {
     .toast-notification {
-      width: 20em;
+      width: 100%;
       height: 25em;
-      left: 30%;
-      bottom: 30px;
     }
 
     .toast-content {
