@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Form from "../components/Form.astro";
-const pageTitle = "Snoodev | Portfolio";
+import WideButton from "../components/WideButton.astro";
+const pageTitle = "Snoodev | Few projects we've done so far";
 const allProjects = await Astro.glob("./portfolio/*.md");
 
 const projects = {
@@ -14,15 +15,13 @@ const projects = {
 
 <Layout title={pageTitle}>
   <header>
-    <h1>{pageTitle}</h1>
-    <h2>Fast solutions for your small business</h2>
+    <h1>Few projects we've done so far</h1>
   </header>
 
   <main>
     <Form />
-    <h3>Few projects we've done so far</h3>
 
-    <div data-aos="fade-up">
+    <div data-aos="fade-right">
       {
         allProjects.map((project) => (
           <div>
@@ -45,11 +44,37 @@ const projects = {
       }
     </div>
   </main>
+  <div data-aos="fade-right">
+    <WideButton />
+  </div>
 </Layout>
 
 <style>
   header {
     text-align: center;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+  }
+
+  main a {
+    box-shadow: none;
+    font-weight: 200;
+    text-decoration: none;
+    transition: none;
+  }
+
+  main a:hover {
+    box-shadow: none;
+    border-radius: 0px;
+    color: var(--color-link);
+    text-decoration: none;
+    transform: scale(1);
   }
 
   h1 {
@@ -66,15 +91,7 @@ const projects = {
     justify-content: center;
     flex-direction: column;
   }
-  ul {
-    padding: 0px;
-    margin: 0px;
-  }
-  ul li {
-    padding: 0px;
-    padding-bottom: 1rem;
-    list-style: none;
-  }
+  
   img {
     width: fit-content;
     border-radius: 20px;
@@ -82,55 +99,67 @@ const projects = {
   }
 
   figure {
-    width: 50vw;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--color-bg-secondary);
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-    border-radius: 20px;
-    margin: 2em;
-    padding: 2em;
-    transition: transform 0.1s ease-in-out 0.1s;
-    cursor: pointer;
+    border: 2px solid var(--color-text);
+    padding: 5%;
+    border-radius: var(--border-radius);
+    background-color: var(--color-bg);
+    margin-bottom: 2em;
+  }
+
+  figure:hover {
+    animation: doubleCard 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes doubleCard {
+    from {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+    }
+
+    to {
+      box-shadow: 10px 10px 0px 0px var(--color-shadow);
+      -webkit-box-shadow: 10px 10px 0px 0px var(--color-shadow);
+      -moz-box-shadow: 10px 10px 0px 0px var(--color-shadow);
+    }
+  }
+
+  figure:not(:hover) {
+    animation: doubleCardRemove 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes doubleCardRemove {
+    from {
+      box-shadow: 10px 10px 0px 0px var(--color-shadow);
+      -webkit-box-shadow: 10px 10px 0px 0px var(--color-shadow);
+      -moz-box-shadow: 10px 10px 0px 0px var(--color-shadow);
+    }
+
+    to {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+    }
+  }
+
+  figure a {
+    box-shadow: none;
+    font-weight: 200;
+    text-decoration: none;
+    transition: none;
   }
 
   figure a:hover {
     box-shadow: none;
+    border-radius: 0px;
     color: var(--color-link);
-  }
-
-  a:hover {
-    box-shadow: none;
-  }
-
-  figure:hover {
-    transform: scale(1.03);
-  }
-
-  figure figcaption {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    color: #000;
-  }
-
-  figure figcaption h4 {
-    font-size: 2em;
-    margin: 0px;
+    text-decoration: none;
+    transform: scale(1);
   }
 
   @media only screen and (max-width: 768px) {
-    figure {
-      width: 75vw;
-      padding: 2rem;
-    }
-
-    figure p {
-      font-size: medium;
-    }
 
     figure a {
       text-decoration: underline;
