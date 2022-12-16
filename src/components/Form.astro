@@ -15,7 +15,8 @@ import Toast from "./Toast.astro";
     <input type="email" id="email" placeholder="name@example.com" />
 
     <label for="budget">What's your budget?</label>
-
+    <small id="budgetWarning">Please include the appropriate budget!</small
+      >
     <input type="text" id="budget" placeholder="€500" />
 
     <label for="Message">Brief description of your project</label>
@@ -114,6 +115,12 @@ import Toast from "./Toast.astro";
 
   #emailWarning {
     display: none;
+    color: var(--color-secondary-accent);
+  }
+
+  #budgetWarning {
+    display: none;
+    color: var(--color-secondary-accent);
   }
 
   .error {
@@ -174,6 +181,15 @@ import Toast from "./Toast.astro";
       padding: 0;
     }
 
+    #greyedOutSubmit {
+      font-size: 1em;
+      height: 2em;
+      width: 100%;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+  }
+
     #closeButton {
       top: 15px;
       right: 15px;
@@ -226,6 +242,8 @@ import Toast from "./Toast.astro";
   });
 
   function checkInput(event) {
+    const emailError = document.getElementById('emailWarning');
+    const budgetError = document.getElementById('budgetWarning');
     const inputElement = event.target;
     const inputId = inputElement.id;
 
@@ -247,8 +265,10 @@ import Toast from "./Toast.astro";
         );
         if (!emailIsValid) {
           inputElement.classList.add("error");
+          emailError.style.display = 'block';
         } else {
           inputElement.classList.remove("error");
+          emailError.style.display = 'none';
         }
       }
 
@@ -257,8 +277,10 @@ import Toast from "./Toast.astro";
 
         if (!budgetIsValid) {
           inputElement.classList.add("error");
+          budgetError.style.display = 'block';
         } else {
           inputElement.classList.remove("error");
+          budgetError.style.display = 'none';
         }
       }
     }
