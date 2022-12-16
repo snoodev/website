@@ -10,7 +10,8 @@ import Toast from "./Toast.astro";
     <input type="text" id="name" placeholder="Enter your name" />
 
     <label for="email">Email address</label>
-
+    <small id="emailWarning">Please let us know your valid email address!</small
+    >
     <input type="email" id="email" placeholder="name@example.com" />
 
     <label for="budget">What's your budget?</label>
@@ -23,6 +24,7 @@ import Toast from "./Toast.astro";
     ></textarea>
 
     <button type="button" id="submit">Submit</button>
+    <button type="button" id="greyedOutSubmit">Submit</button>
   </form>
 </div>
 
@@ -67,11 +69,24 @@ import Toast from "./Toast.astro";
   }
 
   #submit {
+    display: none;
     height: 3em;
     width: 100%;
     line-height: 1;
     margin: 0;
     padding: 1em;
+  }
+
+  #greyedOutSubmit {
+    display: block;
+    height: 3em;
+    width: 100%;
+    line-height: 1;
+    margin: 0;
+    padding: 1em;
+    background-color: grey;
+    color: var(--color-bg);
+    cursor: not-allowed;
   }
 
   #closeButton {
@@ -95,6 +110,10 @@ import Toast from "./Toast.astro";
 
   #closeButton:hover {
     opacity: 100%;
+  }
+
+  #emailWarning {
+    display: none;
   }
 
   .error {
@@ -173,6 +192,8 @@ import Toast from "./Toast.astro";
   const closeForm = document.getElementById("closeButton");
   const form = document.getElementById("hello");
 
+  submit.addEventListener("click", sendForm);
+
   async function sendForm() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
@@ -200,146 +221,69 @@ import Toast from "./Toast.astro";
     }, 3000);
   }
 
-  // form must be filled correctly before submitted
-  submit.addEventListener("click", function () {
-    let name = document.getElementById("name");
-    let email = document.getElementById("email");
-    let budget = document.getElementById("budget");
-    let message = document.getElementById("message");
-
-    if (!name || !email || !budget || !message) {
-      alert("Please fill in all the fields correctly!");
-    } else sendForm();
-
-    if (name.value === "") {
-      name.classList.add("error");
-    } else {
-      name.classList.remove("error");
-      sendForm();
-    }
-
-    if (email.value === "" || !isValidEmail(email.value)) {
-      alert("Please input a valid email address!");
-      email.classList.add("error");
-    } else {
-      email.classList.remove("error");
-      sendForm();
-    }
-
-    function isValidEmail(email: string | HTMLElement) {
-      const emailRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-      return emailRegex.test(email.value);
-    }
-
-    if (budget.value === "" || !isValidNumber(budget.value)) {
-      alert("Please input a valid budget for your project!");
-      email.classList.add("error");
-    } else {
-      email.classList.remove("error");
-      sendForm();
-    }
-
-    function isValidNumber(budget: number | HTMLElement) {
-      const numberRegex = new RegExp(/\d/);
-      return numberRegex.test(budget.value);
-    }
-
-    if (message.value === "") {
-      message.classList.add("error");
-    } else {
-      message.classList.remove("error");
-      sendForm();
-    }
-  });
-
-  // before submitted text validation
-  let name = document.getElementById("name");
-  let budget = document.getElementById("budget");
-  let message = document.getElementById("message");
-  const input = document.querySelector('input[type="email"]');
-
-  input.addEventListener("focus", function () {
-    if (this.value === "") {
-      this.classList.add("inputHighlight");
-    }
-  });
-
-  input.addEventListener("blur", function () {
-    if (this.value === "") {
-      this.classList.add("error");
-    } else {
-      this.classList.remove("inputHighlight");
-      this.classList.remove("error");
-    }
-  });
-
-  input.addEventListener("blur", function () {
-    let isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
-
-    if (!isValid) {
-      input.classList.add("error");
-    } else {
-      input.classList.remove("error");
-    }
-  });
-
-  name.addEventListener("focus", function () {
-    if (this.value === "") {
-      this.classList.add("inputHighlight");
-    }
-  });
-
-  name.addEventListener("blur", function () {
-    if (this.value === "") {
-      this.classList.add("error");
-    } else {
-      this.classList.remove("inputHighlight");
-      this.classList.remove("error");
-    }
-  });
-
-  budget.addEventListener("focus", function () {
-    if (this.value === "") {
-      this.classList.add("inputHighlight");
-    }
-  });
-
-  budget.addEventListener("blur", function () {
-    if (this.value === "") {
-      this.classList.add("error");
-    } else {
-      this.classList.remove("inputHighlight");
-      this.classList.remove("error");
-    }
-  });
-
-  budget.addEventListener("blur", function () {
-    let isValid = /[0-9]/.test(budget.value);
-
-    if (!isValid) {
-      budget.classList.add("error");
-    } else {
-      budget.classList.remove("error");
-    }
-  });
-
-  message.addEventListener("focus", function () {
-    if (this.value === "") {
-      this.classList.add("inputHighlight");
-    }
-  });
-
-  message.addEventListener("blur", function () {
-    if (this.value === "") {
-      this.classList.add("error");
-    } else {
-      this.classList.remove("inputHighlight");
-      this.classList.remove("error");
-    }
-  });
-
   closeForm.addEventListener("click", function () {
     form.style.display = "none";
   });
+
+  function checkInput(event) {
+    const inputElement = event.target;
+    const inputId = inputElement.id;
+
+    if (
+      inputId === "name" ||
+      inputId === "email" ||
+      inputId === "budget" ||
+      inputId === "message"
+    ) {
+      if (!inputElement.value) {
+        inputElement.classList.add("error");
+      } else {
+        inputElement.classList.remove("error");
+      }
+
+      if (inputId === "email") {
+        const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          inputElement.value
+        );
+        if (!emailIsValid) {
+          inputElement.classList.add("error");
+        } else {
+          inputElement.classList.remove("error");
+        }
+      }
+
+      if (inputId === "budget") {
+        const budgetIsValid = /\d/.test(inputElement.value);
+
+        if (!budgetIsValid) {
+          inputElement.classList.add("error");
+        } else {
+          inputElement.classList.remove("error");
+        }
+      }
+    }
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const budgetInput = document.getElementById("budget");
+    const messageInput = document.getElementById("message");
+    const inputsAreEmpty =
+      !nameInput.value ||
+      !emailInput.value ||
+      !budgetInput.value ||
+      !messageInput.value;
+
+    if (!inputsAreEmpty) {
+      document.getElementById("submit").style.display = "block";
+      document.getElementById("greyedOutSubmit").style.display = "none";
+    } else {
+      document.getElementById("submit").style.display = "none";
+      document.getElementById("greyedOutSubmit").style.display = "block";
+    }
+  }
+
+  document.getElementById("name").addEventListener("blur", checkInput);
+  document.getElementById("email").addEventListener("blur", checkInput);
+  document.getElementById("budget").addEventListener("blur", checkInput);
+  document.getElementById("message").addEventListener("blur", checkInput);
 </script>
