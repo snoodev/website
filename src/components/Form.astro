@@ -15,8 +15,7 @@ import Toast from "./Toast.astro";
     <input type="email" id="email" placeholder="name@example.com" />
 
     <label for="budget">What's your budget?</label>
-    <small id="budgetWarning">Please include the appropriate budget!</small
-      >
+    <small id="budgetWarning">Please include the appropriate budget!</small>
     <input type="text" id="budget" placeholder="€500" />
 
     <label for="Message">Brief description of your project</label>
@@ -188,7 +187,7 @@ import Toast from "./Toast.astro";
       line-height: 1;
       margin: 0;
       padding: 0;
-  }
+    }
 
     #closeButton {
       top: 15px;
@@ -210,6 +209,16 @@ import Toast from "./Toast.astro";
 
   submit.addEventListener("click", sendForm);
 
+  function clearForm() {
+    const inputElements = document.querySelectorAll("input");
+    const textareaInput = document.getElementById("message");
+
+    inputElements.forEach((input) => {
+      input.value = "";
+    });
+    textareaInput.value = "";
+  }
+
   async function sendForm() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
@@ -228,6 +237,8 @@ import Toast from "./Toast.astro";
       console.log(data);
     }
 
+    document.getElementById("hello").reset();
+
     toast.style.visibility = "unset";
 
     form.style.display = "none";
@@ -235,15 +246,18 @@ import Toast from "./Toast.astro";
     setTimeout(function () {
       toast.style.display = "none";
     }, 3000);
+
+    clearForm();
   }
 
   closeForm.addEventListener("click", function () {
     form.style.display = "none";
+    clearForm();
   });
 
   function checkInput(event) {
-    const emailError = document.getElementById('emailWarning');
-    const budgetError = document.getElementById('budgetWarning');
+    const emailError = document.getElementById("emailWarning");
+    const budgetError = document.getElementById("budgetWarning");
     const inputElement = event.target;
     const inputId = inputElement.id;
 
@@ -265,10 +279,10 @@ import Toast from "./Toast.astro";
         );
         if (!emailIsValid) {
           inputElement.classList.add("error");
-          emailError.style.display = 'block';
+          emailError.style.display = "block";
         } else {
           inputElement.classList.remove("error");
-          emailError.style.display = 'none';
+          emailError.style.display = "none";
         }
       }
 
@@ -277,10 +291,10 @@ import Toast from "./Toast.astro";
 
         if (!budgetIsValid) {
           inputElement.classList.add("error");
-          budgetError.style.display = 'block';
+          budgetError.style.display = "block";
         } else {
           inputElement.classList.remove("error");
-          budgetError.style.display = 'none';
+          budgetError.style.display = "none";
         }
       }
     }
